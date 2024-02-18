@@ -1,36 +1,32 @@
 {
-  "name": "chrome-extension-webpack",
-  "description": "My basic Chrome extension",
+  "name": "EDS version",
   "version": "0.1.0",
-  "manifest_version": 3,
+  "description": "Display the EDS version for each Setmore mfe component",
+  "permissions": ["tabs", "management"],
+  "host_permissions": ["https://*.setmore.com/*"],
   "background": {
-    "service_worker": "serviceWorker.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"]
+      "matches": ["https://*.setmore.com/*"],
+      "js": ["inject.js"],
+      "all_frames": true
     }
   ],
-  "permissions": ["storage", "scripting"],
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
+  "web_accessible_resources": [
+    {
+      "resources": ["contentScript.js"],
+      "matches": ["https://*.setmore.com/*"]
+    }  
+  ],
   "action": {
-    "default_title": "My basic Chrome extension",
-    "default_popup": "popup.html",
     "default_icon": {
-      "16": "/icons/16x.png",
-      "32": "/icons/32x.png",
-      "48": "/icons/48x.png",
-      "128": "/icons/128x.png"
-    }
+      "16": "./icons/16x.png",
+      "24": "./icons/32x.png",
+      "32": "./icons/32x.png"
+    },
+    "default_popup": "popup.html"
   },
-  "icons": {
-    "16": "/icons/16x.png",
-    "32": "/icons/32x.png",
-    "48": "/icons/48x.png",
-    "128": "/icons/128x.png"
-  }
+  "manifest_version": 3
 }
