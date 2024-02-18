@@ -14,9 +14,11 @@ declare global {
     displayEdsVersionOnLoad();
   });
 
+  //Gets triggered whenever there is a change in the url
   document.addEventListener('onUrlChange', function (e: CustomEvent) {
     const data = e.detail;
     if (data.length > 1) {
+      // handles mfe under settings page
       settingsSubMfe(data[1]);
       return;
     }
@@ -48,7 +50,7 @@ declare global {
 
     if (mfeName) {
       const BaseAppSidebarObserver = new MutationObserver((observer) => {
-        InjectEdsLabel(mfeName, observer);
+        InjectEdsLabel(mfeName, BaseAppSidebarObserver, observer);
       });
 
       BaseAppSidebarObserver.observe(BaseAppSidebar, {
@@ -58,7 +60,11 @@ declare global {
     }
   }
 
-  function InjectEdsLabel(mfeName: string, observer: MutationRecord[]) {
+  function InjectEdsLabel(
+    mfeName: string,
+    observingElement: MutationObserver,
+    observer: MutationRecord[],
+  ) {
     for (const { addedNodes } of observer) {
       for (const node of Array.from(addedNodes)) {
         const linkParent = node as Node;
@@ -71,8 +77,8 @@ declare global {
               '.eds-label',
             ) as HTMLSpanElement;
             label.innerText = 'EDS-' + mfeVersion;
-            BaseAppSidebarObserver.disconnect();
           });
+          observingElement.disconnect();
         }
       }
     }
