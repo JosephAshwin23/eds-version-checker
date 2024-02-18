@@ -8,8 +8,8 @@ Displays the Earth Design System versions for all micro frontend applications on
 ## Getting Started
 
 1. Installation ```npm install ```
-2. Running locally ```npm start ```
-3. Installation ```npm build ```
+2. Running locally ```npm run start ```
+3. Installation ```npm run build ```
 
 
     
