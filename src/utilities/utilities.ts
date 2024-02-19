@@ -1,3 +1,5 @@
+import { mfeNameMap } from "./mfeData";
+
 declare global {
   interface Window {
     [key: string]: Record<string, string>;
@@ -27,6 +29,11 @@ export function waitForGlobal(
   }
 }
 
+export function getMfeName(name: string) {
+   const mfeName = mfeNameMap[name];
+   return mfeName ? mfeName : name;
+}
+ 
 export function edsLabel(edsVersion: string, isBaseApp = false) {
     const label = document.createElement("small");
     label.innerText = edsVersion;
@@ -48,3 +55,13 @@ export function edsLabel(edsVersion: string, isBaseApp = false) {
     }
     return label;
 } 
+
+export function AddMfeVersionOnLabel(mfeName: string, htmlElement: Element, isBaseApp = false) {
+  waitForGlobal({ key: 'mfeEdsVersion', sub: mfeName }, () => {
+    const mfeVersion = window.mfeEdsVersion[mfeName];
+    const label = htmlElement.querySelector(  
+      isBaseApp ? '.eds-label-baseapp' : '.eds-label'
+    ) as HTMLSpanElement;
+    label.innerText = isBaseApp ? 'Base App EDS-' + mfeVersion : 'EDS-' + mfeVersion;
+  });
+}

@@ -1,5 +1,9 @@
 import { mfeDataTestIdMap } from './utilities/mfeData';
-import { edsLabel, waitForGlobal } from './utilities/utilities';
+import {
+  AddMfeVersionOnLabel,
+  edsLabel,
+  getMfeName,
+} from './utilities/utilities';
 
 declare global {
   interface Window {
@@ -35,18 +39,14 @@ declare global {
       BaseAppSidebarList.appendChild(
         edsLabel(`Base App - ${errorMessage}`, true),
       );
-      waitForGlobal({ key: 'mfeEdsVersion', sub: 'baseapp' }, () => {
-        const mfeVersion = window.mfeEdsVersion['baseapp'];
-        const label = BaseAppSidebarList.querySelector(
-          '.eds-label-baseapp',
-        ) as HTMLSpanElement;
-        label.innerText = 'Base App EDS-' + mfeVersion;
-      });
+      AddMfeVersionOnLabel('baseapp', BaseAppSidebarList, true);
     } else {
       return;
     }
 
-    const mfeName = window.location.href.split('.com/')[1].split('/')[0];
+    let mfeName = window.location.href.split('.com/')[1].split('/')[0];
+
+    mfeName = getMfeName(mfeName);
 
     if (mfeName) {
       const BaseAppSidebarObserver = new MutationObserver((observer) => {
@@ -71,13 +71,7 @@ declare global {
         const linkElement = linkParent?.firstChild as HTMLAnchorElement;
         if (linkElement?.classList?.contains('active')) {
           linkElement.appendChild(edsLabel(errorMessage));
-          waitForGlobal({ key: 'mfeEdsVersion', sub: mfeName }, () => {
-            const mfeVersion = window.mfeEdsVersion[mfeName];
-            const label = (linkParent as Element).querySelector(
-              '.eds-label',
-            ) as HTMLSpanElement;
-            label.innerText = 'EDS-' + mfeVersion;
-          });
+          AddMfeVersionOnLabel(mfeName, linkElement);
           observingElement.disconnect();
         }
       }
@@ -86,19 +80,14 @@ declare global {
 
   function dispayEdsVersionOnTabChange(mfeName: string) {
     const mfeDataId = mfeDataTestIdMap[mfeName];
+    mfeName = getMfeName(mfeName);
     if (mfeDataId) {
       const sideNavItem = document.querySelector(
         `li[data-testid='${mfeDataId}']`,
       );
       if (sideNavItem && !sideNavItem.querySelector('.eds-label')) {
         sideNavItem.firstChild.appendChild(edsLabel(errorMessage));
-        waitForGlobal({ key: 'mfeEdsVersion', sub: mfeName }, () => {
-          const mfeVersion = window.mfeEdsVersion[mfeName];
-          const label = sideNavItem.querySelector(
-            '.eds-label',
-          ) as HTMLSpanElement;
-          label.innerText = 'EDS-' + mfeVersion;
-        });
+        AddMfeVersionOnLabel(mfeName, sideNavItem);
       }
     }
   }
@@ -107,19 +96,14 @@ declare global {
     const settingsApp = document.getElementById('settings-app');
     const settingsSidebar = settingsApp?.querySelector('.awd-sidebar__list');
     const mfeDataId = mfeDataTestIdMap[mfeName];
+    mfeName = getMfeName(mfeName);
     if (mfeDataId && settingsSidebar) {
       const settingsSidebarItem = settingsSidebar.querySelector(
         `li[data-testid='${mfeDataId}']`,
       );
       if (!settingsSidebarItem.querySelector('.eds-label')) {
         settingsSidebarItem.firstChild.appendChild(edsLabel(errorMessage));
-        waitForGlobal({ key: 'mfeEdsVersion', sub: mfeName }, () => {
-          const mfeVersion = window.mfeEdsVersion[mfeName];
-          const label = settingsSidebarItem.querySelector(
-            '.eds-label',
-          ) as HTMLSpanElement;
-          label.innerText = 'EDS-' + mfeVersion;
-        });
+        AddMfeVersionOnLabel(mfeName, settingsSidebarItem);
       }
     }
   }

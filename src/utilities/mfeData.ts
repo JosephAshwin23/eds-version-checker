@@ -22,7 +22,39 @@ export const mfeDataTestIdMap: StringObject = {
   'download-apps': 'download-apps-tab',
   activity: 'activity-tab',
   'refer-a-friend': 'refer-a-friend-tab',
-  help: 'help-tab'
+  help: 'help-tab',
 };
 
+export const mfeNameMap: StringObject = {
+  'easy-share': 'easyShare',
+  services: 'easyShare',
+  'your-brand': 'yourBrand',
+  'your-profile': 'yourProfile',
+  'your-team': 'yourTeam',
+  'booking-page': 'bookingPage',
+  usage: 'billing',
+  'download-apps': 'downloadApps',
+  'refer-a-friend': 'referAFriend',
+  help: 'help',
+};
 
+// window.mfeEdsVersion = {
+//   baseapp: '1.0.0',
+//   easyShare: '0.0.15',
+//   yourBrand: '0.0.15',
+//   yourProfile: '0.0.15',
+//   yourTeam: '0.0.15',
+//   bookingPage: '0.0.15',
+//   billing: '0.0.15',
+//   downloadApps: '0.0.15',
+//   referAFriend: '0.0.15',
+//   help: '0.0.15',
+//   integration: '0.0.15',
+//   settings: '0.0.15',
+//   contacts: '0.0.15',
+//   updates: '0.0.15',
+//   connect: '0.0.15',
+//   reports: '0.0.15',
+//   notifications: '0.0.15',
+//   activity: '0.0.15',
+// };
