@@ -1,7 +1,7 @@
 {
-  "name": "EDS version",
+  "name": "EDS Version Checker",
   "version": "0.1.0",
-  "description": "Display the EDS version for each Setmore mfe component",
+  "description": "Display the EDS version for all micro frontend applications on Setmore",
   "permissions": ["tabs", "management"],
   "host_permissions": ["https://*.setmore.com/*"],
   "background": {
@@ -18,15 +18,17 @@
     {
       "resources": ["contentScript.js"],
       "matches": ["https://*.setmore.com/*"]
-    }  
+    }
   ],
   "action": {
-    "icons": {
-      "16": "./icons/logo.png",
-      "24": "./icons/logo.png",
-      "32": "./icons/logo.png"
-    },
     "default_popup": "popup.html"
   },
+
+  "icons": {
+    "16": "./icons/logo.png",
+    "24": "./icons/logo.png",
+    "32": "./icons/logo.png"
+  },
+  
   "manifest_version": 3
 }

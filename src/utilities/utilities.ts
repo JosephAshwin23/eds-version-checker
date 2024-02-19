@@ -46,6 +46,5 @@ export function edsLabel(edsVersion: string, isBaseApp = false) {
       label.style.marginTop = "40px";
       label.classList.add("eds-label-baseapp");
     }
-  
     return label;
 } 
