@@ -38,8 +38,9 @@ export const mfeNameMap: StringObject = {
   help: 'help',
 };
 
+// mock data
 // window.mfeEdsVersion = {
-//   baseapp: '1.0.0',
+//   baseApp: '1.0.0',
 //   easyShare: '0.0.15',
 //   yourBrand: '0.0.15',
 //   yourProfile: '0.0.15',
