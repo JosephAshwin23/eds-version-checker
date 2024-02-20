@@ -3,6 +3,7 @@
 
 
 Displays the Earth Design System versions for all micro frontend applications on Setmore
+<a href="https://chromewebstore.google.com/detail/eds-version-checker/koggbkcbcigigcmjomnnhmjhgbaleool?hl=en&authuser=0" target="_blank">EDS Version Checker</a>
 
 
 ## Getting Started
