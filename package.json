@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Display the earth design system version for each mfe in the browser for Setmore",
   "scripts": {
-    "start": "webpack --watch --config webpack.dev.cjs",
+    "start": "NODE_ENV=development webpack --watch --config webpack.dev.cjs",
     "build": "webpack --config webpack.prod.cjs",
     "lint": "eslint --ext .ts,.js --max-warnings=0 ."
   },
