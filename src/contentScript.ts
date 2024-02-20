@@ -39,7 +39,7 @@ declare global {
       BaseAppSidebarList.appendChild(
         edsLabel(`Base App - ${errorMessage}`, true),
       );
-      AddMfeVersionOnLabel('baseapp', BaseAppSidebarList, true);
+      AddMfeVersionOnLabel('baseApp', BaseAppSidebarList, true);
     } else {
       return;
     }
