@@ -1,6 +1,6 @@
 {
   "name": "EDS Version Checker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Display the EDS version for all micro frontend applications on Setmore",
   "permissions": ["tabs", "management"],
   "host_permissions": ["https://*.setmore.com/*"],
